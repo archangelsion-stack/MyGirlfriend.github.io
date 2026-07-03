@@ -45,6 +45,25 @@ function spawnSparkles(container, count){
   }
 }
 
+/* ---------------- Screen navigation ---------------- */
+const screens = {
+  welcome: document.getElementById('welcome'),
+  login: document.getElementById('login'),
+  travel: document.getElementById('travel'),
+  choice: document.getElementById('choice'),
+  letterScreen: document.getElementById('letterScreen'),
+  courtScreen: document.getElementById('courtScreen'),
+};
+function goTo(name){
+  Object.values(screens).forEach(s=>s.classList.add('hidden'));
+  screens[name].classList.remove('hidden');
+}
+
+document.getElementById('enterBtn').addEventListener('click', ()=>{
+  goTo('login');
+  if(!loginDecoStarted){ initLoginDeco(); }
+});
+
 /* ---------------- Welcome screen effects ---------------- */
 const welcomeDeco = document.getElementById('welcomeDeco');
 spawnSparkles(welcomeDeco, 25);
@@ -93,25 +112,6 @@ musicBtn.addEventListener('click', ()=>{
     bgMusic.pause();
     musicBtn.textContent='🔇 Music';
   }
-});
-
-/* ---------------- Screen navigation ---------------- */
-const screens = {
-  welcome: document.getElementById('welcome'),
-  login: document.getElementById('login'),
-  travel: document.getElementById('travel'),
-  choice: document.getElementById('choice'),
-  letterScreen: document.getElementById('letterScreen'),
-  courtScreen: document.getElementById('courtScreen'),
-};
-function goTo(name){
-  Object.values(screens).forEach(s=>s.classList.add('hidden'));
-  screens[name].classList.remove('hidden');
-}
-
-document.getElementById('enterBtn').addEventListener('click', ()=>{
-  goTo('login');
-  if(!loginDecoStarted){ initLoginDeco(); }
 });
 
 /* ---------------- Login screen effects ---------------- */
